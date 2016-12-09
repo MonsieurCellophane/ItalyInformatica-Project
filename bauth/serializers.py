@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.models import User
 
 from rest_framework import serializers
-from compat import  encode_handler,verify_handler
+from utils  import  encode_handler,verify_handler
 
 
 #Get django user model
@@ -152,11 +152,11 @@ class VerifyTokenSerializer(BaseSerializer):
         try:
             user = User.objects.get_by_natural_key(username)
         except User.DoesNotExist:
-            msg = _("User doesn't exist.")
+            msg = "User doesn't exist."
             raise serializers.ValidationError(msg)
 
         if not user.is_active:
-            msg = _('User account is disabled.')
+            msg = 'User account is disabled.'
             raise serializers.ValidationError(msg)
 
         return user
