@@ -22,38 +22,6 @@ import time
 
 from django.conf import settings
 
-class Serializer(serializers.Serializer):
-    @property
-    def object(self):
-        return self.validated_data
-
-
-class PasswordField(serializers.CharField):
-
-    def __init__(self, *args, **kwargs):
-        if 'style' not in kwargs:
-            kwargs['style'] = {'input_type': 'password'}
-        else:
-            kwargs['style']['input_type'] = 'password'
-        super(PasswordField, self).__init__(*args, **kwargs)
-
-
-def get_username_field():
-    try:
-        username_field = get_user_model().USERNAME_FIELD
-    except:
-        username_field = 'username'
-
-    return username_field
-
-
-def get_username(user):
-    try:
-        username = user.get_username()
-    except AttributeError:
-        username = user.username
-
-    return username
 
 
 def session_key(N=16):
@@ -71,7 +39,7 @@ def encode_secret():
 
 def encoded_payload(username):
     """Return encoded payload"""
-    pl={'username':username,'time':str(time.time()),'sessionkey':session_key()}
+    pl={'username':username,'timestamp':str(time.time()),'sessionkey':session_key()}
     # or use base64
     return (json.dumps(pl)).encode('hex')
 
@@ -102,6 +70,7 @@ def verify_handler(token):
     
     if mac != encode_hmac(pl): return None
     return decoded_payload(pl)
+
 
 if __name__=="__main__":
     import os
