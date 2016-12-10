@@ -48,9 +48,60 @@ Cosa manca la funzionalità minima:
      (IIP)$ pip install -r requirements.txt
      (IIP)$ python manage.py runserver
 
-Effettuare il browse di:
+## Come provarlo
 
-http://localhost:8000/api/auth/token/
-http://localhost:8000/api/auth/verify/
+In una finestra di shell:
 
-usare utente admin, password Cellophane.
+    (IIP) $ python manage.py runserver
+
+In un'altra finestra, sempre dal folder di progetto:
+
+    $ bin/test-token.sh admin Cellophane
+
+output atteso:
+
+    ****************
+    * Obtain token *
+    ****************
+    HTTP/1.0 200 OK
+    Allow: POST, OPTIONS
+    Content-Type: application/json
+    Date: Sat, 10 Dec 2016 07:00:45 GMT
+    Server: WSGIServer/0.1 Python/2.7.12
+    Vary: Accept
+    X-Frame-Options: SAMEORIGIN
+
+    {
+	"token": "8bb8570fb35dab82ad3653c23244d39f5eac73863c257b4aeff1d668a87cd726,7b22757365726e616d65223a202261646d696e222c202274696d657374616d70223a2022313438313335333234352e30222c202273657373696f6e6b6579223a2022664876546f62685a366336316f715845227d"
+    }
+
+    ****************
+    * Verify token *
+    ****************
+    HTTP/1.0 200 OK
+    Allow: POST, OPTIONS
+    Content-Type: application/json
+    Date: Sat, 10 Dec 2016 07:00:45 GMT
+    Server: WSGIServer/0.1 Python/2.7.12
+    Vary: Accept
+    X-Frame-Options: SAMEORIGIN
+
+    {
+	"timestamp": "1481353244.46", 
+	"token": "988b6ea17d49615b06d6a8dbfd4a7d0cb2cae17b112723e6b0782a8e2dec42db,7b22757365726e616d65223a202261646d696e222c202274696d657374616d70223a2022313438313335333234342e3436222c202273657373696f6e6b6579223a20224a763333674b6336793663566c51576a227d", 
+	"user": {
+	    "email": "plastic@glass.org", 
+	    "username": "admin"
+	}
+    }
+
+Oppure con un browser, effettuare il browse di:
+
+* http://localhost:8000/api/auth/token/
+* http://localhost:8000/api/auth/verify/
+
+## Accesso admin
+
+Con il test server acceso, si accede alla admin app tramite http://localhost:8000/admin
+
+Esiste l'utente admin, password Cellophane. 
