@@ -39,7 +39,20 @@ Cosa manca la funzionalità minima:
 
 ## Rapidi cenni d'installazione (linux) in un virtualenv.
 
-(Su sistemi redhat-like, i comandi mkvirtualenv e workon sono nel pacchetto virtualenv-wrapper)
+E' richiesta una macchina Linux con python2.7 (e git per giocare, opzionale per provare).
+Le istruzioni che seguono presuppongono l'uso di [virtualenv](http://virtualenv.readthedocs.io/en/stable/) e del comodo [virtualenvwrapper](http://virtualenvwrapper.readthedocs.io/en/latest/). Fare senza è (forse) possibile, ma sconsigliato (ad esempio perchè è impossibile o scomodissimo il freeze delle versioni, che per i vari pacchetti sono le latest akka data 2016-12-02).
+
+Per sistemi redhat-like (RH, CentOS, Fedora) il setup dei predetti si fa come segue:
+
+     $ sudo yum install pip python-virtualenv python-virtualenvwrapper 
+     $ source /etc/profile.d/virtualenvwrapper.sh
+
+ovvero:
+
+     $ sudo dnf install pip python2-virtualenv python2-virtualenvwrapper 
+     $ source /etc/profile.d/virtualenvwrapper.sh
+
+Per Ubuntu (e altri debian-like: ma chi usa debian non sta neanche leggendo questo paragrafo, giusto?), vedere ad esempio [questo link](http://askubuntu.com/questions/244641/how-to-set-up-and-use-a-virtual-python-environment-in-ubuntu).
 
      $ https://github.com/MonsieurCellophane/ItalyInformatica-Project
      $ cd ItalyInformatica-Project
