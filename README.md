@@ -11,7 +11,7 @@ Vedi: https://www.reddit.com/r/ItalyInformatica/search?q=progettone&restrict_sr=
   * L'endpoint accetta username/password, restituisce un token
   * il token è composto da:
      * hmac/sha256 di un payload concatenato (con una virgola) a 
-     * payload consistente di un array json codificato in hex
+     * payload consistente di un array json codificato Base64
      * l'array json contiene username, sessionkey per aggiungere rumore, e timestamp
   * il token è da usare(2) per le richieste seguenti
   * in fase di verifica:
