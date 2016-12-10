@@ -1,3 +1,12 @@
+import hashlib
+import hmac
+import base64
+import string
+import random
+import simplejson as json
+import time
+
+# Or we do not get the right settings from CLI
 if __name__=="__main__":
     import os
     import sys
@@ -7,20 +16,11 @@ if __name__=="__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "reddit.settings")
 
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
-
 from rest_framework import serializers
 
-import hashlib
-import hmac
-import base64
-import string
-import random
-import simplejson as json
 
-import time
-
-from django.conf import settings
 
 
 
@@ -40,14 +40,20 @@ def encode_secret():
 def encoded_payload(username):
     """Return encoded payload"""
     pl={'username':username,'timestamp':str(time.time()),'sessionkey':session_key()}
-    # or use base64
-    return (json.dumps(pl)).encode('hex')
+    # hexcoding is too bulky
+    #return (json.dumps(pl)).encode('hex')
+    # So use base64
+    return base64.b64encode(json.dumps(pl))
+    
 
 def decoded_payload(pl):
     """Return decoded payload"""
     # or use base64
     try:
-        return (json.loads(pl.decode('hex')))
+        # hexcoding is too bulky
+        #return (json.loads(pl.decode('hex')))
+        # So use base64
+        return json.loads(base64.b64decode(pl))
     except ValueError:
         return None
     except TypeError:
