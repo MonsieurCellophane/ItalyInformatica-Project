@@ -41,7 +41,7 @@ Cosa manca la funzionalità minima:
 
 E' richiesta una macchina Linux con python2.7 e git.
 
-Le istruzioni che seguono presuppongono l'uso di [virtualenv](http://virtualenv.readthedocs.io/en/stable/) e del comodo [virtualenvwrapper](http://virtualenvwrapper.readthedocs.io/en/latest/). Fare senza è (forse) possibile, ma sconsigliato (ad esempio perchè è impossibile o scomodissimo il freeze delle versioni, che per i vari pacchetti sono le latest akka data 2016-12-02).
+Le istruzioni che seguono presuppongono l'uso di [virtualenv](http://virtualenv.readthedocs.io/en/stable/) e del comodo [virtualenvwrapper](http://virtualenvwrapper.readthedocs.io/en/latest/). Fare senza è (forse) possibile, ma sconsigliato (ad esempio perchè è impossibile o scomodissimo il freeze delle versioni, che per i vari pacchetti sono le latest alla data 2016-12-02).
 
 Per sistemi redhat-like (RH, CentOS, Fedora) il setup dei predetti si fa come segue:
 
