@@ -69,7 +69,7 @@ In una finestra di shell:
 
 In un'altra finestra, sempre dal folder di progetto:
 
-    $ bin/test-token.sh admin Cellophane
+    (IIP) $ bin/test-token.sh admin Cellophane
 
 output atteso:
 
