@@ -13,11 +13,11 @@ Vedi: https://www.reddit.com/r/ItalyInformatica/search?q=progettone&restrict_sr=
      * hmac/sha256 di un payload concatenato (con una virgola) a 
      * payload consistente di un array json codificato Base64
      * l'array json contiene username, sessionkey per aggiungere rumore, e timestamp
-  * il token è da usare(2) per le richieste seguenti
+  * il token [viene utilizzato per le richieste seguenti](wiki/Come-effettuare-una-richiesta-autenticata)
   * in fase di verifica:
      * vengono separati hmac e payload
      * si verifica l'esistenza e dello username nel backend auth di Django
-     * si controlla(3) l'età del token e...(TBD)
+     * si controlla(2) l'età del token e...(TBD)
 
 Cosa fa:
 
@@ -34,7 +34,6 @@ Cosa manca la funzionalità minima:
 
 2) Ma ancora non è deciso come
 
-4) Ma è da scrivere
 
 
 ##  Installazione e setup (linux).
