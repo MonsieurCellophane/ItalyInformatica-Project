@@ -16,10 +16,15 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 
+from rest_framework.urlpatterns import format_suffix_patterns
 from bauth import views
+import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/auth/', include('bauth.urls')),
+    url(r'^test/', views.AuthenticatedView.as_view()),
     
 ]
+urlpatterns = format_suffix_patterns(urlpatterns)
+
+urlpatterns.append(url(r'^api/auth/', include('bauth.urls')))
