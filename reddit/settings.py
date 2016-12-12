@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # end boilerplate
     'rest_framework',
     'bauth',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -123,4 +124,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 ####################ITINF
 ITINF_SECRET="Trullallero lero la"
+#Deprecated in 1.5, along with jango.contrib.auth.models.User.get_profile()
+#
+#AUTH_PROFILE_MODULE = 'accounts.Profile'
 
