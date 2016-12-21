@@ -128,3 +128,9 @@ ITINF_SECRET="Trullallero lero la"
 #
 #AUTH_PROFILE_MODULE = 'accounts.Profile'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+    'PAGE_SIZE': 10
+}
