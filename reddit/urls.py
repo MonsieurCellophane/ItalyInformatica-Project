@@ -20,13 +20,21 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from bauth import views
 import views
 
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'^test/', views.AuthenticatedView.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
 
-# cannot be put above, format_suffix_patterns bombs if we do it.
-urlpatterns.append(url(r'^api/accounts/', include('accounts.urls')))
+# Use append - cannot be put above, format_suffix_patterns bombs if we do it.
+# Admin site
+urlpatterns.append(url(r'^admin/', admin.site.urls))
+# API - auth
 urlpatterns.append(url(r'^api/auth/', include('bauth.urls')))
+# API - accounts
+urlpatterns.append(url(r'^api/accounts/', include('accounts.urls')))
+# API - schema
+urlpatterns.append(url(r'^api/schema/', include('schema.urls')))
+
+
