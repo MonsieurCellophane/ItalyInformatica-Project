@@ -62,11 +62,17 @@ class TokenAPIView(APIView):
     def get(self, request, *args, **kwargs):return Response(None, status=status.HTTP_204_NO_CONTENT)
     
     def post(self, request, *args, **kwargs):
+        """
+        Handles post requests, passing incoming data to own serializer.
+        The serializer checks incomng data and (if valid) will return the 
+        needed payload, based on the token.
+        """
         serializer = self.get_serializer(data=request.data)
 
         if serializer.is_valid():
             user = serializer.object.get('user') or request.user
             token = serializer.object.get('token')
+            # TODO: yes, this is silly
             response_data = serializer.response_payload_handler(token, user, request)
 
             return Response(response_data)
