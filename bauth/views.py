@@ -5,7 +5,6 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from serializers import TokenSerializer, VerifyTokenSerializer
-from renderers import SwaggerRenderer
 from utils import verify_handler
 
 class TokenAPIView(APIView):
