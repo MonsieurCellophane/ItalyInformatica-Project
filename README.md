@@ -18,7 +18,7 @@ Vedi: https://www.reddit.com/r/ItalyInformatica/search?q=progettone&restrict_sr=
      * vengono separati hmac e payload
      * si verifica l'esistenza e dello username nel backend auth di Django
      * si controlla la congruenza del token con i dati presenti nel DB utenti e la sua età(2)
-     * a seguito del buion esito della procedura di verifica, si dà seguito all'azione richiesta.
+     * a seguito del buon esito della procedura di verifica, si dà seguito all'azione richiesta.
 
 Cosa fa:
 
