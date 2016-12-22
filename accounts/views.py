@@ -8,18 +8,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
-from rest_framework import schemas
-from rest_framework import renderers, response
-from rest_framework.schemas import get_schema_view
-from rest_framework_swagger.views import get_swagger_view
-from rest_framework.decorators import api_view, renderer_classes
-
-
 from accounts.serializers import ProfileSerializer, UserSerializer, GroupSerializer
 from accounts.permissions import IsOwnerOrReadOnly
 from accounts.permissions import IsAdminOrReadOnly
 from accounts.models      import Profile
-from accounts.renderers import SwaggerRenderer
 
 
 #
@@ -34,6 +26,7 @@ def api_root(request, format=None):
         'groups'   : reverse('group-list'  , request=request, format=format),
         'ptofiles' : reverse('profile-list', request=request, format=format),
     })
+
 class ProfileViewSet(mixins.UpdateModelMixin,
                      mixins.ListModelMixin,
                      mixins.RetrieveModelMixin,
@@ -70,14 +63,3 @@ class GroupViewSet(viewsets.ModelViewSet):
                           IsAdminOrReadOnly,)
 
 
-# Schema stuff 
-# TODO: factor this to a separate app, as it finds too much stuff (the entire APIs)
-APItitle="ItalyInformatica Big Project API"
-schema_view = get_schema_view(title=APItitle)
-swagger_view=get_swagger_view(title=APItitle)
-
-@api_view()
-@renderer_classes([SwaggerRenderer])
-def openapi_view(request):
-    generator = schemas.SchemaGenerator(title=APItitle)
-    return response.Response(generator.get_schema(request=request))
