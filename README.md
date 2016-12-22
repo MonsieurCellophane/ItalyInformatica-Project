@@ -17,16 +17,23 @@ Vedi: https://www.reddit.com/r/ItalyInformatica/search?q=progettone&restrict_sr=
   * in fase di verifica:
      * vengono separati hmac e payload
      * si verifica l'esistenza e dello username nel backend auth di Django
-     * si controlla(2) l'età del token e...(TBD)
+     * si controlla la congruenza del token con i dati presenti nel DB utenti e la sua età(2)
+     * a seguito del buion esito della procedura di verifica, si dà seguito all'azione richiesta.
 
 Cosa fa:
 
-  * Espone due API browsabili per [ottenere](http://localhost:8000/api/auth/token/) e [verificare](http://localhost:8000/api/auth/verify/) un token.
+  * Espone API browsabili per gli ambiti di [autorizzazione con
+    token](http://localhost:8000/api/auth//)
+    
+  * di [user accounts](http://localhost:8000/api/accounts/),
+
+  * dà accesso ad [uno schema documentato](http://localhost:8000/api/accounts/)
+  in due formati - coreapi, openapi
   
 
-Cosa manca la funzionalità minima:
+Cosa manca alla funzionalità minima:
 
-  * Endpoint per registrazione, lettura e creazione profilo...
+  * Endpoint per registrazione
 
 ---
 
@@ -111,8 +118,7 @@ output atteso:
 
 Oppure con un browser, effettuare il browse di:
 
-* http://localhost:8000/api/auth/token/
-* http://localhost:8000/api/auth/verify/
+* http://localhost:8000/
 
 ## Accesso admin
 
