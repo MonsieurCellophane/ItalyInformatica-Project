@@ -1,11 +1,24 @@
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.reverse import reverse
 
 from rest_framework.decorators import api_view
 
 from serializers import TokenSerializer, VerifyTokenSerializer
 from utils import verify_handler
+
+#
+@api_view(['GET'])
+def api_root(request, format=None):
+    '''
+    API entry point
+    '''
+    #import ipdb; ipdb.set_trace() 
+    return Response({
+        'obtain-token'   : reverse('obtain-token'   , request=request, format=format),
+        'verify-token'   : reverse('verify-token'   , request=request, format=format),
+    })
 
 class TokenAPIView(APIView):
     """
@@ -46,6 +59,8 @@ class TokenAPIView(APIView):
         kwargs['context'] = self.get_serializer_context()
         return serializer_class(*args, **kwargs)
 
+    def get(self, request, *args, **kwargs):return Response(None, status=status.HTTP_204_NO_CONTENT)
+    
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
 
@@ -66,6 +81,8 @@ class ObtainToken(TokenAPIView):
     Returns a Token that can be used for authenticated requests.
     """
     serializer_class = TokenSerializer
+
+
 
 class VerifyToken(TokenAPIView):
     """
