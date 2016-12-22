@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'bauth',
     'accounts',
     'schema',
+    'root',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,9 @@ ROOT_URLCONF = 'reddit.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ 
+            os.path.join(BASE_DIR,'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,6 +127,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+#??ALF?? STATIC_ROOT = os.path.join(BASE_DIR, 'static'),
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+]
 ####################ITINF
 ITINF_SECRET="Trullallero lero la"
 #Deprecated in 1.5, along with jango.contrib.auth.models.User.get_profile()

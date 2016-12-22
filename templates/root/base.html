@@ -1,0 +1,102 @@
+{% load staticfiles %}
+{% load i18n %}
+
+
+  <head>
+    {% block head %}
+
+      {% block meta %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="robots" content="NONE,NOARCHIVE" />
+      {% endblock %}
+
+      <title>{% block title %}{% if name %}{{ name }} – {% endif %}Italy Informatica project{% endblock %}</title>
+
+      {% block style %}
+        {% block bootstrap_theme %}
+          <link rel="stylesheet" type="text/css" href="{% static "root/css/bootstrap.min.css" %}"/>
+          <link rel="stylesheet" type="text/css" href="{% static "root/css/bootstrap-tweaks.css" %}"/>
+        {% endblock %}
+
+        <link rel="stylesheet" type="text/css" href="{% static "root/css/prettify.css" %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static "root/css/default.css" %}"/>
+      {% endblock %}
+
+    {% endblock %}
+  </head>
+
+  {% block body %}
+  <body class="{% block bodyclass %}{% endblock %}">
+
+    <div class="wrapper">
+      {% block navbar %}
+        <div class="navbar navbar-static-top {% block bootstrap_navbar_variant %}navbar-inverse{% endblock %}">
+          <div class="container">
+            <span>
+              {% block branding %}
+                <a class='navbar-brand' rel="nofollow" href='http://reddit.com/r/ItalyInformatica/'>
+                    The reddit ItalyInformatica Project
+                </a>
+              {% endblock %}
+            </span>
+            <ul class="nav navbar-nav pull-right">
+              {% block userlinks %}
+              {% endblock %}
+            </ul>
+          </div>
+        </div>
+      {% endblock %}
+
+      <div class="container">
+        {% block breadcrumbs %}
+          <ul class="breadcrumb">
+            {% for breadcrumb_name, breadcrumb_url in breadcrumblist %}
+              {% if forloop.last %}
+                <li class="active"><a href="{{ breadcrumb_url }}">{{ breadcrumb_name }}</a></li>
+              {% else %}
+                <li><a href="{{ breadcrumb_url }}">{{ breadcrumb_name }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endblock %}
+
+        <!-- Content -->
+        <div id="content">
+            <div class="content-main">
+              <div class="page-header">
+                <h1>{{ name }}</h1>
+              </div>
+              <div style="float:left">
+                {% block description %}
+                  {{ description }}
+                {% endblock %}
+              </div>
+
+
+        </div><!-- /.content -->
+      </div><!-- /.container -->
+    </div><!-- ./wrapper -->
+
+    {% block script %}
+      <script>
+        window.drf = {
+          csrfHeaderName: "{{ csrf_header_name|default:'X-CSRFToken' }}",
+          csrfCookieName: "{{ csrf_cookie_name|default:'csrftoken' }}"
+        };
+      </script>
+      <script src="{% static "root/js/jquery-1.12.4.min.js" %}"></script>
+      <script src="{% static "root/js/ajax-form.js" %}"></script>
+      <script src="{% static "root/js/csrf.js" %}"></script>
+      <script src="{% static "root/js/bootstrap.min.js" %}"></script>
+      <script src="{% static "root/js/prettify-min.js" %}"></script>
+      <script src="{% static "root/js/default.js" %}"></script>
+      <script>
+        $(document).ready(function() {
+          $('form').ajaxForm();
+        });
+      </script>
+    {% endblock %}
+
+  </body>
+  {% endblock %}
+</html>

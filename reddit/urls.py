@@ -17,7 +17,6 @@ from django.conf.urls import url,include
 from django.contrib import admin
 
 from rest_framework.urlpatterns import format_suffix_patterns
-from bauth import views
 import views
 
 
@@ -28,6 +27,7 @@ urlpatterns = [
 urlpatterns = format_suffix_patterns(urlpatterns)
 
 # Use append - cannot be put above, format_suffix_patterns bombs if we do it.
+urlpatterns.append(url(r'^', include('root.urls')))
 # Admin site
 urlpatterns.append(url(r'^admin/', admin.site.urls))
 # API - auth
