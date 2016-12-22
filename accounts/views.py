@@ -24,7 +24,7 @@ def api_root(request, format=None):
     return Response({
         'users'    : reverse('user-list'   , request=request, format=format),
         'groups'   : reverse('group-list'  , request=request, format=format),
-        'ptofiles' : reverse('profile-list', request=request, format=format),
+        'profiles' : reverse('profile-list', request=request, format=format),
     })
 
 class ProfileViewSet(mixins.UpdateModelMixin,
