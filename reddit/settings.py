@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # end boilerplate
     'rest_framework',
+    'rest_framework_swagger',
     'bauth',
     'accounts',
 ]
