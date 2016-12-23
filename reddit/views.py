@@ -8,6 +8,9 @@ class AuthenticatedView(APIView):
     authentication_classes = (SessionAuthentication, TokenAuthentication)
     permission_classes = (IsAuthenticated,)
     
+    # do not put this in the schema
+    exclude_from_schema = True
+    
     def get(self, request, format=None):
         content = {
             'user': unicode(request.user),  # `django.contrib.auth.User` instance.
