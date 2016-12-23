@@ -34,6 +34,8 @@ urlpatterns.append(url(r'^admin/', admin.site.urls))
 urlpatterns.append(url(r'^api/auth/', include('bauth.urls')))
 # API - accounts
 urlpatterns.append(url(r'^api/accounts/', include('accounts.urls')))
+# API - registration
+urlpatterns.append(url(r'^api/registration/', include('registration.urls')))
 # API - schema
 urlpatterns.append(url(r'^api/schema/', include('schema.urls')))
 

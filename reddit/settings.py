@@ -38,11 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # end boilerplate
+    # rest framework
     'rest_framework',
     'rest_framework_swagger',
+    # project apps
     'bauth',
     'accounts',
     'schema',
+    'registration',
     'root',
 ]
 
