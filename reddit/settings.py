@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     # rest framework
     'rest_framework',
     'rest_framework_swagger',
+    #django-extensions
+    'django_extensions',
     # project apps
     'bauth',
     'accounts',
