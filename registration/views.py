@@ -74,15 +74,17 @@ class RegistrationList(generics.ListCreateAPIView):
         serializer = RegistrationSerializer(queryset, context={'request':request}, many=True)
         return Response(serializer.data)
 
-    def perform_create(self, serializer):
-        #import pdb; pdb.set_trace()
-        username=serializer.validated_data.get('get_username',None)
-        if serializer.validated_data.has_key('get_username'): del serializer.validated_data['get_username']
-        email=serializer.validated_data.get('get_email',None)
-        if serializer.validated_data.has_key('get_email'): del serializer.validated_data['get_email']
-        u=User(username=username,email=email,password='catafratto')
-        u.save()
-        instance=serializer.save(email=email, owner=u)
+    #def perform_create(self, serializer):
+        #import ipdb; ipdb.set_trace()
+        #self.owner.save()
+        #username=serializer.validated_data.get('get_username',None)
+        #if serializer.validated_data.has_key('get_username'): del serializer.validated_data['get_username']
+        #email=serializer.validated_data.get('get_email',None)
+        #if serializer.validated_data.has_key('get_email'): del serializer.validated_data['get_email']
+        #u=User(username=username,email=email,password='catafratto')
+        #u.save()
+        #instance=serializer.save(email=email, owner=u)
+        #instance=serializer.save()
 
     #def post(self, request, format=None):
     #    # TODO user creation, ownership
