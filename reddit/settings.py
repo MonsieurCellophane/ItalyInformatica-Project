@@ -45,9 +45,9 @@ INSTALLED_APPS = [
     'django_extensions',
     # project apps
     'bauth',
-    'accounts',
+    'accounts.apps.AccountsConfig',
     'schema',
-    'registration',
+    'registration.apps.RegistrationConfig',
     'root',
 ]
 
