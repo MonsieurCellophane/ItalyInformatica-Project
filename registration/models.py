@@ -2,17 +2,15 @@ from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 
 from django.db import models
+from django.contrib.auth.models import User
 
 from rest_framework.reverse  import reverse, reverse_lazy
+from rest_framework.exceptions import APIException, NotAcceptable
+import random
+import string
 
+from utils import password_default, encode_handler, verify_handler
 
-
-
-def password_default(N=8):
-    """
-    Random string for registration passwords
-    """
-    return (''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits+string.lowercase) for _ in range(N)))
 
 model_urlpattern_name='registration-detail'
 
@@ -24,29 +22,42 @@ class Registration(models.Model):
     created  = models.DateTimeField(auto_now_add=True)
     verified = models.DateTimeField(null=True)
     owner=models.ForeignKey('auth.User', related_name='registration', on_delete=models.CASCADE)
-    token = models.TextField()
-    password = models.TextField(default='password_default')
-    email = models.EmailField(null=True)
+    token = models.TextField(default=None)
+    password = models.TextField(default=password_default)
+    _email=None
     
     def is_verified(self): return self.verified is not None
 
     #http://stackoverflow.com/questions/17898994/how-to-use-request-get-in-django-models
     def inject_request(self,request):
         self.request=request
-        
-    def get_username(self):
-        if self.owner:
-            return self.owner.username
-        return None
 
-    def get_email(self):
-        if self.owner:
+    @property
+    def email(self):
+        if self.owner_id:
             return self.owner.email
-        return self.email
+        else:
+            return self._email
+
+
+    @email.setter
+    def email(self,value):
+        if self.pk:
+            raise NotAcceptable("cannot update saved registrations")
+        
+        if self.owner_id:
+            raise NotAcceptable("Registration owner already set")
+
+        else:
+            try:
+                u=User.objects.get(username=value)
+                raise NotAcceptable("Address already registered")
+            except User.DoesNotExist:
+                self._email=value
 
     #todo transform it in verify url
     def get_absolute_url(self):
-        
+       
         #import ipdb; ipdb.set_trace()
         #must return a valid URL - right now it does not
         #or x = getattr(self, 'attr', sentinel)
@@ -59,12 +70,25 @@ class Registration(models.Model):
         return reverse_lazy( model_urlpattern_name, request=r, args=[str(self.id)])
     
     def save(self, *args, **kwargs):
+        #import ipdb; ipdb.set_trace()
+        if self.pk:
+            raise NotAcceptable("cannot update saved registrations")
+        try:
+            u=User.objects.get(username=self._email)
+            raise NotAcceptable("Address already registered")
+        except User.DoesNotExist:
+                u=User(username=self._email,email=self._email,password=self.password)
+                u.save()
+                self.owner=u
+                self.owner_id=self.owner.id
+                
         # maybe do something clever
+        self.token=encode_handler(self._email)
+        #further actions in receivers
         super(Registration, self).save(*args, **kwargs)
 
     def __str__(self):
-        o="NULL"
-        if self.owner: o=self.owner.username
+        o=self._email
         return o
         
     class Meta:
