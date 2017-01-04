@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 
 ver=0.1
 author="Monsieur Cellophane <MrC3llophane@gmail.com>"
