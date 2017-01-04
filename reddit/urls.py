@@ -40,3 +40,4 @@ urlpatterns.append(url(r'^api/registration/', include('registration.urls')))
 urlpatterns.append(url(r'^api/schema/', include('schema.urls')))
 
 
+#import ipdb; ipdb.set_trace()

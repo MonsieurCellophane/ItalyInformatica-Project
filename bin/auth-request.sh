@@ -68,18 +68,25 @@ warn() {
 }
 
 token() {
-    http -b POST $BASE/api/auth/token/ username="$1" password="$2" | fgrep '{"token":' | awk -F: '{print $2}' | sed -e 's/["}]//g'
+    local flags
+    [[ x$opt_v != x ]] && flags="$flags -v"
+
+    http $flags -b POST $BASE/api/auth/token/ username="$1" password="$2" | fgrep '{"token":' | awk -F: '{print $2}' | sed -e 's/["}]//g'
+}
+
+tokenfmt() {
+    echo $1 | awk -F, '{print $2;}' | base64 -d | sed -e s'/.*"usage": "//' -e 's/".$//'
 }
 
 request() {
-    local token=$1
+    local header=$1
     shift
     local url=$1
     shift
     local flags
     [[ x$opt_v != x ]] && flags="$flags -v"
     
-    http $flags $METH ${BASE}${url} "X-Token: $token" $@
+    http $flags $METH ${BASE}${url} "$header" $@
 }
 
 while getopts dvhb:m: opt ; do
@@ -104,8 +111,12 @@ shift
 
 token=$(token $U $P)
 vbs "Acquired token: $token"
+fmt=$(tokenfmt $token)
+vbs "Token format: '$fmt'"
+header=$(printf "$fmt" $token)
+vbs "header: '$header'"
 
-request "$token" "$URL" "$@"
+request "$header" "$URL" "$@"
 
 
 

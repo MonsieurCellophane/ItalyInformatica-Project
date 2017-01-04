@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
 
 def index(request):
     context={
@@ -8,3 +10,10 @@ def index(request):
         }
     return render(request,'root/index.html', context)
 
+@login_required
+def private(request): 
+    context={
+        'you':request.user
+        }
+    return render(request,'root/private.html', context)
+    
