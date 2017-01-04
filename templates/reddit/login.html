@@ -11,7 +11,7 @@
     </p>
 </div>
 
-<form class="borderless" method="post" id="login-form">{% csrf_token %}
+<form action="{% url 'auth_login' %}" class="borderless" method="post" id="login-form">{% csrf_token %}
   <table class="form-row">
     <tr>
     <td><label for="id_username">Nome utente</label></td><td><input type="text" name="username" id="id_username" /></td>
