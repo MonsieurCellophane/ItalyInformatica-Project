@@ -1,0 +1,31 @@
+{% extends "reddit/base.html" %}
+{% block description %}
+<h1>Login</h1>
+
+<div class="abstract">
+    <p>
+    I servizi disponibili su questo portale sono riservati al personale autorizzato.
+    </p>
+    <p>
+    Vi preghiamo di inserire le Vostre credenziali
+    </p>
+</div>
+
+<form class="borderless" method="post" id="login-form">{% csrf_token %}
+  <table class="form-row">
+    <tr>
+    <td><label for="id_username">Nome utente</label></td><td><input type="text" name="username" id="id_username" /></td>
+  </tr>
+  <tr>
+    <td><label for="id_password">Password</label> </td><td><input type="password" name="password" id="id_password" /></td><td>
+  </tr>
+  </table>
+    <input type="hidden" name="this_is_the_login_form" value="1" />
+    <input type="hidden" name="next" value="{{ next|default:"/"|escape }}" />
+    <div class="formActions">
+        <input type="submit" value="Invia"/>
+    </div>
+</form>
+
+
+{% endblock %}

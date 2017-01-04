@@ -1,6 +1,6 @@
-{% extends "root/base.html" %}
+{% extends "reddit/base.html" %}
 {% block description %}
-<h2>Hullo {{ you  }}</h2>
+<h2>Browsable API</h2>
 <ul>
   <li><a href="/api/auth/">Browse the AUTH API</a></li>
   <li><a href="/api/accounts/">Browse the ACCOUNTS API</a></li>
@@ -8,6 +8,12 @@
   <li><a href="/api/schema/">Schema (coreapi version)</a></li>
   <li><a href="/api/schema/swagger/">Schema (openapi, formerly swagger)</a></li>
   <li><a href="/api/schema/swagger_view/">Swagger-like interface</a></li>
+</ul>
+
+<h2>Test links</h2>
+<ul>
+  <li><a href="/test/">An authenticated view</a></li>
+  <li><a href="/private/">A private URL (requires login)</a></li>
 </ul>
 
 <h2>Admin site</h2>

@@ -15,19 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 from rest_framework.urlpatterns import format_suffix_patterns
 import views
 
 
 urlpatterns = [
+    url(r'^$', views.index, name='index'),
+    url(r'^private/$', views.private, name='private'),
+    url(r'^accounts/login/$', auth_views.login,{'template_name': 'reddit/login.html'},name='auth_login'),
     url(r'^test/', views.AuthenticatedView.as_view()),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
-urlpatterns = format_suffix_patterns(urlpatterns)
-
-# Use append - cannot be put above, format_suffix_patterns bombs if we do it.
-urlpatterns.append(url(r'^', include('root.urls')))
+urlpatterns.extend(format_suffix_patterns([url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))]))
 # Admin site
 urlpatterns.append(url(r'^admin/', admin.site.urls))
 # API - auth

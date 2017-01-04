@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'schema',
     'registration.apps.RegistrationConfig',
-    'root',
 ]
 
 MIDDLEWARE = [
