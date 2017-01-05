@@ -1,20 +1,16 @@
 # Auth
 
-* For token authenticated requests, how do we override the request.user ?
-check, for instance, https://docs.djangoproject.com/en/1.10/topics/auth/customizing/
+AUTH now works (through middleware) also for @login_required decorated requests/views YAY! 
 
-# Registration
 
-* Now we have a Registration that can be sensibly saved. In model's save, need to set a token. AND the token needs to be a verification token (so maybe extend methods in bauth to take a variable payload). 
+# General
 
-* The registration field needs to yield a validation_url which incorporates the vaildation token, and the validation token must be memorized as such.
-
-* design a sensible URL schema. Need to look at get_absolute_url in models.py, which uses reverse. Needs by_id, by_token views.
+* Think about using routers roather than detailed views (especially for registration)
 
 * When using routers:
 
-	URL pattern: ^registrations/$ Name: 'registration-list'
-	URL pattern: ^registrations/{pk}/$ Name: 'registration-detail'
+	URL pattern: ^registrations/$       Name: 'registration-list'
+	URL pattern: ^registrations/{pk}/$  Name: 'registration-detail'
 	
 	@detail_route(methods=['get'], permission_classes=[(IsAdminOrIsSelf)])
 	def set_password(self, request, pk=None):
