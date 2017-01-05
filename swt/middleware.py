@@ -27,9 +27,7 @@ class SWTAuthenticationMiddleware(MiddlewareMixin):
                 " before the SimpleWebTokenMiddleware class.")
 
         #Already authenticated
-        if request.user.is_authenticated:
-            if request.user.get_username() == self.clean_username(username, request):
-                return
+        if request.user.is_authenticated: return
 
         # Attempt authentication
         (user,backend) = (None,None)
@@ -47,9 +45,4 @@ class SWTAuthenticationMiddleware(MiddlewareMixin):
             request.user = user
             auth.login(request, user, backend=backend)
 
-    def clean_username(self, username):
-        """
-        Because somebody complained
-        """
-        return username
     
