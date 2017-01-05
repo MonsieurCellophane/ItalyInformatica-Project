@@ -10,7 +10,7 @@ from rest_framework import generics
 
 from rest_framework.decorators import api_view
 
-from bauth.utils import verify_handler
+from utils import verify_handler
 from serializers import RegistrationSerializer,UserSerializer
 from models      import Registration
 #

@@ -44,9 +44,9 @@ INSTALLED_APPS = [
     #django-extensions
     'django_extensions',
     # project apps
-    'bauth',
+    'swt.apps.SwtConfig',
     'accounts.apps.AccountsConfig',
-    'schema',
+    'schema.apps.SchemaConfig',
     'registration.apps.RegistrationConfig',
 ]
 
@@ -56,6 +56,8 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # SWT Authenthication
+    'swt.middleware.SWTAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -137,7 +139,17 @@ STATICFILES_DIRS = [
     '/var/www/static/',
 ]
 ####################ITINF
-ITINF_SECRET="Trullallero lero la"
+ITINF_SETTINGS={
+    "secret":"Trullallero lero la",
+    "token_usage":"X-Token: %s",
+    "token_header":"HTTP_X_TOKEN",
+}
+
+AUTHENTICATION_BACKENDS=[
+#Should work without this: remove is_authenticated from  setting or somesuch
+    'django.contrib.auth.backends.ModelBackend',
+    'swt.authentication.TokenAuthentication',
+    ]
 #Deprecated in 1.5, along with jango.contrib.auth.models.User.get_profile()
 #
 #AUTH_PROFILE_MODULE = 'accounts.Profile'

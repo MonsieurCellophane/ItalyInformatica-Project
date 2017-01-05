@@ -34,7 +34,7 @@ def encode_secret():
     """Return a systemwide fixed secret"""
     #TODO: Read from settings
     try:
-        return settings.ITINF_SECRET
+        return settings.ITINF_SETTINGS['secret']
     except AttributeError:
         msg="Define ITINF_SECRET in settings.py"
         raise APIException(msg)
@@ -43,11 +43,12 @@ def encoded_payload(username):
     """Return encoded payload"""
     #import ipdb; ipdb.set_trace()
     try:
-        usage=settings.ITINF_TOKEN_USAGE
+        usage=settings.ITINF_SETTINGS['token_usage']
     except AttributeError:
         usage="X-Token: %s"
         
-    pl={'username':username,'timestamp':str(time.time()),'sessionkey':session_key(),'usage':usage}
+    pl={'username':username,'timestamp':str(time.time()),'sessionkey':session_key(),'usage':usage,'auth':"Simple Web Token"
+    }
     # hexcoding is too bulky
     #return (json.dumps(pl)).encode('hex')
     # So use base64

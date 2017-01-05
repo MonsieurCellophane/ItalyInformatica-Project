@@ -1,11 +1,14 @@
-from rest_framework.views import APIView
 from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.reverse import reverse
+from rest_framework.authentication import SessionAuthentication
 
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from rest_framework.reverse import reverse
+from rest_framework.views import APIView
 
 from serializers import TokenSerializer, VerifyTokenSerializer
+from authentication import TokenAuthentication
 from utils import verify_handler
 
 #
@@ -111,3 +114,4 @@ class VerifyToken(TokenAPIView):
 
 obtain_token = ObtainToken.as_view()
 verify_token = VerifyToken.as_view()
+

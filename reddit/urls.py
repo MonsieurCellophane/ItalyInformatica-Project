@@ -19,19 +19,19 @@ from django.contrib.auth import views as auth_views
 
 from rest_framework.urlpatterns import format_suffix_patterns
 import views
-
+import swt.exviews
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^private/$', views.private, name='private'),
     url(r'^accounts/login/$', auth_views.login,{'template_name': 'reddit/login.html'},name='auth_login'),
-    url(r'^test/', views.AuthenticatedView.as_view()),
+    url(r'^test/$',swt.exviews.AuthenticatedView.as_view()),
 ]
 urlpatterns.extend(format_suffix_patterns([url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))]))
 # Admin site
 urlpatterns.append(url(r'^admin/', admin.site.urls))
 # API - auth
-urlpatterns.append(url(r'^api/auth/', include('bauth.urls')))
+urlpatterns.append(url(r'^api/auth/', include('swt.urls')))
 # API - accounts
 urlpatterns.append(url(r'^api/accounts/', include('accounts.urls')))
 # API - registration

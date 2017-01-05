@@ -37,7 +37,7 @@ def encode_secret():
     """Return a systemwide fixed secret"""
     #TODO: Read from settings
     try:
-        return settings.ITINF_SECRET
+        return settings.ITINF_SETTINGS['secret']
     except AttributeError:
         msg="Define ITINF_SECRET in settings.py"
         raise AttributeError(msg)
