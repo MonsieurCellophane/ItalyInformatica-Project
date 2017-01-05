@@ -46,3 +46,10 @@ class SWTAuthenticationMiddleware(MiddlewareMixin):
             # by logging the user in.
             request.user = user
             auth.login(request, user, backend=backend)
+
+    def clean_username(self, username):
+        """
+        Because somebody complained
+        """
+        return username
+    
