@@ -10,11 +10,16 @@ from django.core.mail import send_mail
 
 @receiver(post_save, sender=Registration)
 def send_registration_handle(sender, instance, **kwargs):
-    import ipdb; ipdb.set_trace()
+    """
+    Sends user a validation link
+    """
+    #import ipdb; ipdb.set_trace()
+    url=instance.get_absolute_url()
+    url.rstrip('/')
     try:
         send_mail(
             'Registration to ItalyInformaticaProject',
-            "Please click on the link to validate your registration:%s/%s"%(instance.get_absolute_url(),instance.token),
+            "Please click on the link to validate your registration:%s/%s"%(url.rstrip('/'),instance.token),
             'noreply@glass.org',
             [instance.owner.email],
             fail_silently=False,
