@@ -14,6 +14,7 @@ class RegistrationSerializer(serializers.HyperlinkedModelSerializer):
         #import ipdb; ipdb.set_trace();
         r=Registration()
         r.email=validated_data['email']
+        r.inject_request(self.context['request'])
         r.save()
         return r
     
