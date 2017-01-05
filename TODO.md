@@ -3,6 +3,11 @@
 AUTH now works (through middleware) also for @login_required decorated requests/views YAY! 
 
 
+# Registration
+
+* write user validation code
+* tune permissions for get on list (isAdminOrOwner - or somesuch)
+
 # General
 
 * Think about using routers roather than detailed views (especially for registration)
