@@ -19,7 +19,7 @@ def send_registration_handle(sender, instance, **kwargs):
     try:
         send_mail(
             'Registration to ItalyInformaticaProject',
-            "Please click on the link to validate your registration:%s/%s"%(url.rstrip('/'),instance.token),
+            "Please click on the link to validate your registration: %s/%s/verify"%(url.rstrip('/'),instance.token),
             'noreply@glass.org',
             [instance.owner.email],
             fail_silently=False,
