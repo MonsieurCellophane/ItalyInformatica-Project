@@ -89,7 +89,8 @@ class Registration(models.Model):
 
     def __str__(self):
         o=self._email
-        return o
+        if o is None: o=self.email
+        return repr(o)
         
     class Meta:
         ordering = ('created',)
