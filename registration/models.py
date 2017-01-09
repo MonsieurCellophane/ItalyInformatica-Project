@@ -9,7 +9,7 @@ from rest_framework.exceptions import APIException, NotAcceptable
 import random
 import string
 
-from utils import password_default, encode_handler, verify_handler
+from .utils import password_default, encode_handler, verify_handler
 
 
 model_urlpattern_name='registration-detail'
@@ -25,9 +25,23 @@ class Registration(models.Model):
     token = models.TextField(default=None)
     password = models.TextField(default=password_default)
     _email=None
+    _verifying=False # will be set to True during verification. See views
     
     def is_verified(self): return self.verified is not None
 
+    def is_valid(self):
+        pl=verify_handler(self.token)
+        return pl is not None
+
+    def timestamp(self):
+        pl=verify_handler(self.token)
+        if pl is None:
+            raise APIException("Invalid token")
+        
+        return float(pl['timestamp'])
+
+    def payload(self): return verify_handler(self.token)
+    
     #http://stackoverflow.com/questions/17898994/how-to-use-request-get-in-django-models
     def inject_request(self,request):
         self.request=request
@@ -42,8 +56,10 @@ class Registration(models.Model):
 
     @email.setter
     def email(self,value):
+        #import ipdb; ipdb.set_trace()
+        #if self._verifying: return     # disregard attempt
         if self.pk:
-            raise NotAcceptable("cannot update saved registrations")
+            raise NotAcceptable("cannot update email on saved registrations")
         
         if self.owner_id:
             raise NotAcceptable("Registration owner already set")
@@ -70,7 +86,12 @@ class Registration(models.Model):
         return reverse_lazy( model_urlpattern_name, request=r, args=[str(self.id)])
     
     def save(self, *args, **kwargs):
-        #import ipdb; ipdb.set_trace()
+        import ipdb; ipdb.set_trace()
+        #if verifying, just do it
+        if self._verifying:
+            super(Registration, self).save(*args, **kwargs)
+            return
+            
         if self.pk:
             raise NotAcceptable("cannot update saved registrations")
         try:

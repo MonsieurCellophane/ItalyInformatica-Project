@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import Http404
 from django.contrib.auth.models import User
+from django.conf import settings
+
+from rest_framework.exceptions import APIException, NotAcceptable
 
 from rest_framework.views import APIView
 from rest_framework import status
@@ -10,10 +13,19 @@ from rest_framework import generics
 
 from rest_framework.decorators import api_view
 
-from utils import verify_handler
+import time
+import datetime
+
+import logging
+
 from serializers import RegistrationSerializer,UserSerializer
 from models      import Registration
+
+
 #
+logger= logging.getLogger(__name__)
+logger.warning("yayayayayayayayayaay")
+
 @api_view(['GET'])
 def registration_api_root(request, format=None):
     '''
@@ -100,10 +112,35 @@ class RegistrationVerify(APIView):
     """
     Verify a registration
     """
-    def get(self, request, pk=None, format=None):
+    def get(self, request, pk=None, token=None, format=None):
         # TODO verification, user update
-        registrations = Registration.objects.all()
-        serializer = RegistrationSerializer(registrations, many=True)
+        import ipdb; ipdb.set_trace() ;
+        logger.error("testing testing")
+        
+        registrations = Registration.objects.filter(pk=pk,token=token)
+        if len(registrations) != 1:
+            raise NotAcceptable("Got wrong # of registrations (%d, should be 1)"%len(registrations))
+
+        r0=registrations[0]
+        if r0.is_verified():
+            raise APIException("Do not verify registratios twice, plz")
+        
+        timestamp=r0.timestamp()
+       
+        try:
+            grace_period=settings.ITINF_SETTINGS['registration_expires']
+        except AttributeError:
+            grace_period=604800
+
+        if time.time()-timestamp > grace_period:
+            logger.error("Stale registration! Please do something")
+        else:
+            r0.verified=datetime.datetime.now()
+            r0._verifying=True
+            
+            r0.save()
+        
+        serializer = RegistrationSerializer(r0)
         return Response(serializer.data)
 
 # verify        = RegistrationVerify.as_view()

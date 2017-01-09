@@ -20,7 +20,7 @@ class RegistrationSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Registration
-        fields = ('url', 'id', 'email','password','token')
+        fields = ('url', 'id', 'email','password','token','verified')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     registration = serializers.PrimaryKeyRelatedField(many=True, queryset=Registration.objects.all())

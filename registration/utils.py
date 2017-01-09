@@ -35,7 +35,6 @@ def session_key(N=16):
 
 def encode_secret():
     """Return a systemwide fixed secret"""
-    #TODO: Read from settings
     try:
         return settings.ITINF_SETTINGS['secret']
     except AttributeError:

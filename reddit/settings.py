@@ -143,6 +143,7 @@ ITINF_SETTINGS={
     "secret":"Trullallero lero la",
     "token_usage":"X-Token: %s",
     "token_header":"HTTP_X_TOKEN",
+    "registration_expires": 604801,
 }
 
 AUTHENTICATION_BACKENDS=[
