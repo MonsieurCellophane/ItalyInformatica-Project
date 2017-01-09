@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^$', views.registration_api_root,name='registration-api-root'),
     url(r'^registrations/$',views.RegistrationList.as_view(), name='registration-list'),
     url('^registrations/(?P<pk>[0-9]+)/$',views.RegistrationDetail.as_view(), name='registration-detail'),
-    url('^registrations/<(?P<pk>d+)/(?P<token>[^/]+)/verify/$',views.RegistrationVerify.as_view(), name='registration-verify'),
+    url('^registrations/(?P<pk>[0-9]+)/(?P<token>[a-zA-Z0-9,=]+)/verify/$',views.RegistrationVerify.as_view(), name='registration-verify'),
     url(r'^regusers/$', views.UserList.as_view(),name="regusers"),
     url(r'^regusers/(?P<pk>[0-9]+)/$', views.UserDetail.as_view(),name='reguser-detail'),
 ]
