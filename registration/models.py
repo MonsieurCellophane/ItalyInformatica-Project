@@ -86,7 +86,7 @@ class Registration(models.Model):
         return reverse_lazy( model_urlpattern_name, request=r, args=[str(self.id)])
     
     def save(self, *args, **kwargs):
-        import ipdb; ipdb.set_trace()
+        #import ipdb; ipdb.set_trace()
         #if verifying, just do it
         if self._verifying:
             super(Registration, self).save(*args, **kwargs)

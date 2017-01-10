@@ -13,7 +13,7 @@ def send_registration_handle(sender, instance, **kwargs):
     """
     Sends user a validation link
     """
-    import ipdb; ipdb.set_trace()
+    #import ipdb; ipdb.set_trace()
     if instance._verifying: return
     url=instance.get_absolute_url()
     url.rstrip('/')

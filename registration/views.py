@@ -23,8 +23,8 @@ from models      import Registration
 
 
 #
-logger= logging.getLogger(__name__)
-logger.warning("yayayayayayayayayaay")
+logger= logging.getLogger('IIR')
+logger.debug("Logging is active")
 
 @api_view(['GET'])
 def registration_api_root(request, format=None):
@@ -114,8 +114,7 @@ class RegistrationVerify(APIView):
     """
     def get(self, request, pk=None, token=None, format=None):
         # TODO verification, user update
-        import ipdb; ipdb.set_trace() ;
-        logger.error("testing testing")
+        #import ipdb; ipdb.set_trace() ;
         
         registrations = Registration.objects.filter(pk=pk,token=token)
         if len(registrations) != 1:
