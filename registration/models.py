@@ -11,7 +11,6 @@ import string
 
 from .utils import password_default, encode_handler, verify_handler
 
-
 model_urlpattern_name='registration-detail'
 
 @python_2_unicode_compatible
@@ -26,6 +25,7 @@ class Registration(models.Model):
     password = models.TextField(default=password_default)
     _email=None
     _verifying=False # will be set to True during verification. See views
+
     
     def is_verified(self): return self.verified is not None
 
@@ -98,7 +98,9 @@ class Registration(models.Model):
             u=User.objects.get(username=self._email)
             raise NotAcceptable("Address already registered")
         except User.DoesNotExist:
-                u=User(username=self._email,email=self._email,password=self.password)
+                u=User(username=self._email,email=self._email)
+                # this hashes the password
+                u.set_password(self.password)
                 u.save()
                 self.owner=u
                 self.owner_id=self.owner.id

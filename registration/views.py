@@ -10,6 +10,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated 
 
 from rest_framework.decorators import api_view
 
@@ -18,8 +19,8 @@ import datetime
 
 import logging
 
-from serializers import RegistrationSerializer,UserSerializer
-from models      import Registration
+from .serializers import RegistrationSerializer,UserSerializer, ChangePasswordSerializer
+from .models      import Registration
 
 
 #
@@ -33,7 +34,9 @@ def registration_api_root(request, format=None):
     '''
     #import ipdb; ipdb.set_trace() 
     return Response({
-        'registration-list': reverse('registration-list', request=request, format=format),
+        'registration-changepassword':  reverse('registration-changepassword', request=request, format=format),
+        'registration-list':  reverse('registration-list', request=request, format=format),
+        'registration-create': reverse('registration-create', request=request, format=format),
         'regusers'         : reverse('regusers', request=request, format=format),
         # cannot add a root for detail - the pk argument will always be missing
         #'registration-detail' : reverse('registration-detail', request=request, format=format),
@@ -43,6 +46,7 @@ class RegistrationDetail(APIView):
     """
     Retrieve, update? or delete??? a registration instance
     """
+    
     def get_object(self, pk, request):
         try:
             obj=Registration.objects.get(pk=pk)
@@ -53,13 +57,13 @@ class RegistrationDetail(APIView):
 
     def get(self, request, pk, format=None):
         registration = self.get_object(pk,request)
-        serializer = RegistrationSerializer(registration)
+        serializer = RegistrationSerializer(registration,context={'request':request})
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
         # TODO user creation, ownership
         registration = self.get_object(pk,request)
-        serializer = RegistrationSerializer(registration, data=request.data)
+        serializer = RegistrationSerializer(registration,  context={'request':request}, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -71,42 +75,39 @@ class RegistrationDetail(APIView):
         registration.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-# register      = RegistrationDetail.as_view()
 
-class RegistrationList(generics.ListCreateAPIView):
+# the mixin allows creation
+class RegistrationCreate(generics.CreateAPIView):
     """
-    List all registrations, or create a new registration.
+    Create a registration.
     """
     serializer_class=RegistrationSerializer
-    queryset = Registration.objects.all()
+    permission_classes=[]
+    
+# the mixin allows creation
+class RegistrationList(generics.ListAPIView):
+    """
+    List all registrations.
+    """
+    serializer_class=RegistrationSerializer
+    #queryset = Registration.objects.all()
+
+    def get_queryset(self):
+        """
+        This view should return a list of all registrations (for the superuser)
+        or the registrations belonging to the currently authenticated user.
+        """
+        #import ipdb; ipdb.set_trace()
+        user = self.request.user
+        if user.is_anonymous(): return []
+        if user.is_superuser: return Registration.objects.all()
+        return Registration.objects.filter(owner=user)
     
     def list(self, request,format=None):
         queryset = self.get_queryset()
         for r in queryset: r.inject_request(request)
         serializer = RegistrationSerializer(queryset, context={'request':request}, many=True)
         return Response(serializer.data)
-
-    #def perform_create(self, serializer):
-        #import ipdb; ipdb.set_trace()
-        #self.owner.save()
-        #username=serializer.validated_data.get('get_username',None)
-        #if serializer.validated_data.has_key('get_username'): del serializer.validated_data['get_username']
-        #email=serializer.validated_data.get('get_email',None)
-        #if serializer.validated_data.has_key('get_email'): del serializer.validated_data['get_email']
-        #u=User(username=username,email=email,password='catafratto')
-        #u.save()
-        #instance=serializer.save(email=email, owner=u)
-        #instance=serializer.save()
-
-    #def post(self, request, format=None):
-    #    # TODO user creation, ownership
-    #    serializer = RegistrationSerializer(context={'request':request},data=request.data)
-    #    if serializer.is_valid():
-    #        serializer.save()
-    #        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-#registrations = RegistrationList.as_view()
 
 class RegistrationVerify(APIView):
     """
@@ -139,13 +140,37 @@ class RegistrationVerify(APIView):
             
             r0.save()
         
-        serializer = RegistrationSerializer(r0)
+        serializer = RegistrationSerializer(r0, context={'request':request} )
         return Response(serializer.data)
 
-# verify        = RegistrationVerify.as_view()
 
 
+class ChangePasswordView(generics.UpdateAPIView):
+    """
+    An endpoint for changing password.
+    """
+    serializer_class = ChangePasswordSerializer
+    model = User
+    permission_classes = (IsAuthenticated,)
 
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        return obj
+
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            # Check old password
+            if not self.object.check_password(serializer.data.get("old_password")):
+                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
+            # set_password also hashes the password that the user will get
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            return Response("Success.", status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
@@ -155,4 +180,26 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    
+
+# for reference
+    #def perform_create(self, serializer):
+        #import ipdb; ipdb.set_trace()
+        #self.owner.save()
+        #username=serializer.validated_data.get('get_username',None)
+        #if serializer.validated_data.has_key('get_username'): del serializer.validated_data['get_username']
+        #email=serializer.validated_data.get('get_email',None)
+        #if serializer.validated_data.has_key('get_email'): del serializer.validated_data['get_email']
+        #u=User(username=username,email=email,password='catafratto')
+        #u.save()
+        #instance=serializer.save(email=email, owner=u)
+        #instance=serializer.save()
+
+    #def post(self, request, format=None):
+    #    # TODO user creation, ownership
+    #    serializer = RegistrationSerializer(context={'request':request},data=request.data)
+    #    if serializer.is_valid():
+    #        serializer.save()
+    #        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#registrations = RegistrationList.as_view()
