@@ -161,3 +161,34 @@ REST_FRAMEWORK = {
     ],
     'PAGE_SIZE': 10
 }
+
+#https://docs.djangoproject.com/en/1.10/topics/logging/
+#https://gist.github.com/palewire/1740398
+LOGGING={
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            #'format': '%(levelname)s|%(asctime)s|%(module)s|%(process)d|%(thread)d|%(message)s',
+            'format': '%(levelname)s|%(asctime)s|%(pathname)s|%(funcName)s|%(lineno)d|%(message)s',
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s|%(message)s'
+        },
+    },
+    'handlers': {
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'IIR': {
+            'handlers': ['console',],
+            'level': 'DEBUG',
+            'propagate': True,
+        }
+    }
+}
