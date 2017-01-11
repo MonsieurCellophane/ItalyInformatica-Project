@@ -19,10 +19,20 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer for user profiles
     """
-    owner        = serializers.ReadOnlyField(source='owner.username')
-    is_confirmed = serializers.ReadOnlyField() # (source='is_confirmed') gives a 'redundant' exception
+    #owner        = serializers.ReadOnlyField(source='owner.username')
+    #is_confirmed = serializers.ReadOnlyField() # (source='is_confirmed') gives a 'redundant' exception
 
     class Meta:
         model = Profile
-        fields = ('url', 'id', 'owner',
-                  'location', 'bio', 'birth_date', 'is_confirmed')
+        fields='__all__'
+        exclude='is_confirmed'
+        #fields = ('url', 'id', 'owner',
+        #          'location', 'bio', 'birth_date', 'is_confirmed')
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+

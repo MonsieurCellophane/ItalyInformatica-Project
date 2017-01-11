@@ -50,17 +50,3 @@ class RegistrationSerializer(serializers.HyperlinkedModelSerializer):
         model = Registration
         fields = ('url', 'id', 'email','password','token','verified')
 
-
-class ChangePasswordSerializer(serializers.Serializer):
-    """
-    Serializer for password change endpoint.
-    """
-    old_password = serializers.CharField(required=True)
-    new_password = serializers.CharField(required=True)
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    registration = serializers.PrimaryKeyRelatedField(many=True, queryset=Registration.objects.all())
-
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'registration')

@@ -19,7 +19,7 @@ import datetime
 
 import logging
 
-from .serializers import RegistrationSerializer,UserSerializer, ChangePasswordSerializer
+from .serializers import RegistrationSerializer
 from .models      import Registration
 
 
@@ -34,10 +34,9 @@ def registration_api_root(request, format=None):
     '''
     #import ipdb; ipdb.set_trace() 
     return Response({
-        'registration-changepassword':  reverse('registration-changepassword', request=request, format=format),
         'registration-list':  reverse('registration-list', request=request, format=format),
         'registration-create': reverse('registration-create', request=request, format=format),
-        'regusers'         : reverse('regusers', request=request, format=format),
+        #'regusers'         : reverse('regusers', request=request, format=format),
         # cannot add a root for detail - the pk argument will always be missing
         #'registration-detail' : reverse('registration-detail', request=request, format=format),
     })
@@ -142,44 +141,6 @@ class RegistrationVerify(APIView):
         
         serializer = RegistrationSerializer(r0, context={'request':request} )
         return Response(serializer.data)
-
-
-
-class ChangePasswordView(generics.UpdateAPIView):
-    """
-    An endpoint for changing password.
-    """
-    serializer_class = ChangePasswordSerializer
-    model = User
-    permission_classes = (IsAuthenticated,)
-
-    def get_object(self, queryset=None):
-        obj = self.request.user
-        return obj
-
-    def update(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        serializer = self.get_serializer(data=request.data)
-
-        if serializer.is_valid():
-            # Check old password
-            if not self.object.check_password(serializer.data.get("old_password")):
-                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
-            # set_password also hashes the password that the user will get
-            self.object.set_password(serializer.data.get("new_password"))
-            self.object.save()
-            return Response("Success.", status=status.HTTP_200_OK)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
 # for reference
     #def perform_create(self, serializer):
