@@ -1,12 +1,13 @@
+# Accounts
+
+* fine tune permissions for profiles (chek that a user can only edit its own: IsAdminOrOwner)
+
 # Auth
 
 AUTH now works (through middleware) also for @login_required decorated requests/views YAY! 
 
 
-# Registration
 
-* write user validation code
-* tune permissions for get on list (isAdminOrOwner - or somesuch)
 
 # General
 
