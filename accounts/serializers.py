@@ -25,7 +25,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         fields='__all__'
-        exclude='is_confirmed'
+        #exclude=['is_confirmed']
         #fields = ('url', 'id', 'owner',
         #          'location', 'bio', 'birth_date', 'is_confirmed')
 
