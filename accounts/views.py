@@ -9,9 +9,11 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework import generics
+from rest_framework import mixins
+
 
 from .serializers import ProfileSerializer, UserSerializer, GroupSerializer, ChangePasswordSerializer
-from .permissions import IsOwnerOrReadOnly, IsAdminOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsAdminOrReadOnly, IsAdminOrIsSelf
 from .models      import Profile
 
 
@@ -45,24 +47,35 @@ class ProfileViewSet(mixins.UpdateModelMixin,
     permission_classes = (IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin,
+                   mixins.ListModelMixin,
+                   viewsets.GenericViewSet):
+
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,
-                          IsAdminOrReadOnly,)
+    permission_classes = (IsAdminOrReadOnly,IsAdminOrIsSelf)
+
+    def get_queryset(self) :
+        """
+        This view should return a list of all users (for the superuser)
+        or only the currently authenticated user.
+        """
+        user = self.request.user
+        if user.is_superuser: return User.objects.all().order_by('-date_joined')
+        if user.is_anonymous(): return []
+        return User.objects.filter(username=user.username)
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows groups to be viewed.
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,
-                          IsAdminOrReadOnly,)
+    permission_classes = (IsAdminOrReadOnly,)
 
 #as view
 class ChangePasswordView(generics.UpdateAPIView):
