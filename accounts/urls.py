@@ -8,7 +8,7 @@ from .views import ProfileViewSet,UserViewSet,GroupViewSet, ChangePasswordViewSe
 
 router = routers.DefaultRouter()
 router.register(r'profiles', ProfileViewSet)
-router.register(r'users'   , UserViewSet)
+router.register(r'users'   , UserViewSet, base_name='user')
 router.register(r'groups'  , GroupViewSet)
 router.register(r'chpass'  , ChangePasswordViewSet, base_name='chpass')
 
