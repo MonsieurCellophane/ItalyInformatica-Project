@@ -36,6 +36,7 @@ def registration_api_root(request, format=None):
     return Response({
         'registration-list':  reverse('registration-list', request=request, format=format),
         'registration-create': reverse('registration-create', request=request, format=format),
+        'registration-verify': reverse('registration-verify', request=request, format=format),        
         #'regusers'         : reverse('regusers', request=request, format=format),
         # cannot add a root for detail - the pk argument will always be missing
         #'registration-detail' : reverse('registration-detail', request=request, format=format),
@@ -136,7 +137,8 @@ class RegistrationVerify(APIView):
         else:
             r0.verified=datetime.datetime.now()
             r0._verifying=True
-            
+            r0.owner.profile.is_confirmed=True
+            r0.owner.profile.save()
             r0.save()
         
         serializer = RegistrationSerializer(r0, context={'request':request} )

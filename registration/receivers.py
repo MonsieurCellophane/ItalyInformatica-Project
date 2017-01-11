@@ -2,6 +2,7 @@ from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 
 from rest_framework.exceptions import APIException
+from rest_framework.reverse import reverse
 
 from models import Registration
 from django.core.mail import send_mail
@@ -15,12 +16,13 @@ def send_registration_handle(sender, instance, **kwargs):
     """
     #import ipdb; ipdb.set_trace()
     if instance._verifying: return
-    url=instance.get_absolute_url()
-    url.rstrip('/')
+    #url=instance.get_absolute_url()
+    url=reverse('registration-verify', request=instance.request, format=None)
     try:
         send_mail(
             'Registration to ItalyInformaticaProject',
-            "Please click on the link to validate your registration: %s/%s/verify/"%(url.rstrip('/'),instance.token),
+            #"Please click on the link to validate your registration: /verify/%s/%s"%(url.rstrip('/'),instance.token),
+            "Please click on the link to validate your registration: %s/%s/%s"%(url.rstrip('/'),repr(instance.id),instance.token),
             'noreply@glass.org',
             [instance.owner.email],
             fail_silently=False,
