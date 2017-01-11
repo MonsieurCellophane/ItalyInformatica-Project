@@ -5,6 +5,9 @@ from rest_framework import serializers
 from accounts.models import Profile
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    #username=serializers.ReadOnlyField()
+    #profile=serializers.ReadOnlyField()
+    #groups=serializers.ReadOnlyField()
     class Meta:
         model = User
         fields = ('url', 'id', 'username', 'email', 'profile', 'groups')
@@ -19,8 +22,9 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer for user profiles
     """
-    #owner        = serializers.ReadOnlyField(source='owner.username')
-    #is_confirmed = serializers.ReadOnlyField() # (source='is_confirmed') gives a 'redundant' exception
+    owner        = serializers.ReadOnlyField(source='owner.username')
+    is_confirmed = serializers.ReadOnlyField()
+    is_deleted   = serializers.ReadOnlyField()
 
     class Meta:
         model = Profile
