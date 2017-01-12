@@ -17,5 +17,19 @@ class Profile(models.Model):
     birth_date = models.DateField(null=True, blank=True)
     is_confirmed=models.BooleanField(null=False, blank=False, default=False)
     is_deleted=models.BooleanField(null=False, blank=False, default=False)
+    #
+    def __iter__(self):
+        """
+        this iterator allows the idiom:
 
+        for field, val in obj:
+            do_something
+
+        credits http://stackoverflow.com/questions/3106295/django-get-list-of-model-fields
+        """
+        for field in Profile._meta.get_fields():
+            value = getattr(self, field.name, None)
+            yield (field.name, value)
     
+    def __str__(self):
+        return "PROF_%s"%repr(self.id)
