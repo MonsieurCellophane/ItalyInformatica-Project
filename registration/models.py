@@ -20,7 +20,7 @@ class Registration(models.Model):
     """
     created  = models.DateTimeField(auto_now_add=True)
     verified = models.DateTimeField(null=True)
-    owner=models.ForeignKey('auth.User', related_name='registration', on_delete=models.CASCADE)
+    owner=models.OneToOneField(User, related_name='registration', on_delete=models.CASCADE)
     token = models.TextField(default=None)
     password = models.TextField(default=password_default)
     _email=None
@@ -110,10 +110,25 @@ class Registration(models.Model):
         #further actions in receivers
         super(Registration, self).save(*args, **kwargs)
 
+    def __iter__(self):
+        """
+        this iterator allows the idiom:
+
+        for field, val in obj:
+            do_something
+
+        credits http://stackoverflow.com/questions/3106295/django-get-list-of-model-fields
+        """
+        for field in Registration._meta.get_fields():
+            value = getattr(self, field.name, None)
+            yield (field.name, value)
+
     def __str__(self):
-        o=self._email
-        if o is None: o=self.email
-        return repr(o)
+        #o=self._email
+        #if o is None: o=self.email
+        #return repr(o)
+        return "REG_%s"%repr(self.id)
+
         
     class Meta:
         ordering = ('created',)
