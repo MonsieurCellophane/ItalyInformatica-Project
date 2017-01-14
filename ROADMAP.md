@@ -14,7 +14,7 @@ Dopo un periodo di dibattito sul sub, si consolidò la consapevolezza tipica del
 
 ### A2
 
-Per il frontend, gli interessati si impegnarono tutti in un costruttivo dibattito, che presto si focalizzò sul punto di massimo rilievo, e cioè, *"che linguaggio usare nel frontend?"*. Dopo un periodo di fruttuoso scambio di vedute, il risultato atteso non mancò di realizzarsi: ognuno dei partecipanti si ritirò dal progetto e dal dibattito, malmostos e incazzato con tutti gli altri. /u/chobeat gettò, demoralizzato, la spugna. Io mi ritrovai con un quarto di prototipo di backend e leader per default di un progetto di cui ero anche l'unico membro. 
+Per il frontend, gli interessati si impegnarono tutti in un costruttivo dibattito, che presto si focalizzò sul punto di massimo rilievo, e cioè, *"che linguaggio usare nel frontend?"*. Dopo un periodo di fruttuoso scambio di vedute, il risultato atteso non mancò di realizzarsi: ognuno dei partecipanti si ritirò dal progetto e dal dibattito, malmostoso e incazzato con tutti gli altri. /u/chobeat gettò, demoralizzato, la spugna. Io mi ritrovai con un quarto di prototipo di backend e leader per default di un progetto di cui ero anche l'unico membro. 
 
 ### Bridge
 
@@ -22,7 +22,7 @@ Non mi andava di mollare il lavoro fatto fino a quel punto, per quanto non fosse
 
 ### A3
 
-A questo punto, con circa un mese di ritardo sulle tabelle di marcia, il backend dell'app è - come diciamo noi programmatori (wink) - *feature complete*. Il che non è dire molto: si tratta di un generico backend di autenticazione, registrazione e (parziale) autorizzazione. Il tutto corredato da REST API in stile swagger e coreapi. Il buono di tutto ciò e che si tratta di un oggetto sufficientemente agnostico da poter essere utilizzato virtualmente in qualunque cosa abbia bisogno di un backend che faccia user e profile management distribuito.
+A questo punto, con circa un mese di ritardo sulle tabelle di marcia, il backend dell'app è - come diciamo noi programmatori (wink) - *feature complete*. Il che non è dire molto: si tratta di un generico backend di autenticazione, registrazione e (parziale) autorizzazione. Il tutto corredato da REST API in stile swagger e coreapi. Il buono di tutto ciò è che si tratta di un oggetto sufficientemente agnostico da poter essere utilizzato virtualmente in qualunque cosa abbia bisogno di un backend che faccia user e profile management distribuito.
 
 ## Solo 
 
