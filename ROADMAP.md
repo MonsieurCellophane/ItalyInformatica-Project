@@ -49,6 +49,8 @@ All fine si potrebbe decidere tutto il resto, non escluso chi coordina le varie 
 
 Se invece nemmeno questo *flatus voci* basterà a ravvivare l'interesse, non ho intenzione di fermarmi subito. Probabilmente, visto che il prototipo esistente utilizza Django 10, proverò un'implementazione alternativa con flask e SqlAlchemy, e probabilmente, qualche client: php, Phonegap/Cordova, kivy. Poi, siccome gamification e GUI non sono proprio il mio forte, è probabile che mi fermi e tenga quello che ho scritto per riusarlo in progetti di lavoro.
 
+Lo ritengo tempo comunque impiegato bene. Ho svecchiato le mie conoscenze di Django (ferme alla 1.4), mi sono familiarizzato con alcuni protocolli di autenticazione via webtoken (e ne ho fatto uno tutto mio, har har), visto diversi framework, imparato buzzwords nuove (non che delle ultime ce ne sia carestia, ma tant'è). La prosiima volta che avrò bisogno delle funzionalità del progetto, potrò ricominciare da dove mi sono fermato.
+
 ### A4
 
 Spero però che l'idea di imparare tecnologie nuove e usalre per farci cose possa stuzzicare il *code bone* di un certo numero di persone, e che si possa cominciare a farne qualcosa di buono. Se così fosse, invito gli interessati a farsi sentire.
