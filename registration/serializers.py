@@ -1,6 +1,8 @@
-from rest_framework import serializers
-from models import Registration
 from django.contrib.auth.models import User
+
+from rest_framework import serializers
+
+from .models import Registration
 
 
 class RegistrationSerializer(serializers.HyperlinkedModelSerializer):

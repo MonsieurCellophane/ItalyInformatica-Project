@@ -3,7 +3,8 @@ from django.conf import settings
 
 from rest_framework import authentication
 from rest_framework import exceptions
-from utils import verify_handler
+
+from .utils import verify_handler
 
 
 class TokenAuthentication(authentication.BaseAuthentication):

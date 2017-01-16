@@ -8,4 +8,5 @@ class AccountsConfig(AppConfig):
     verbose_name="Accounts for the /r/italyinformatica project"
     def ready(self):
         #import ipdb; ipdb.set_trace();
-        import receivers
+        from . import receivers
+        

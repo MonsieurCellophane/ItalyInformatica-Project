@@ -7,9 +7,9 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 
-from serializers import TokenSerializer, VerifyTokenSerializer
-from authentication import TokenAuthentication
-from utils import verify_handler
+from .serializers import TokenSerializer, VerifyTokenSerializer
+from .authentication import TokenAuthentication
+from .utils import verify_handler
 
 #
 @api_view(['GET'])

@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from rest_framework.urlpatterns import format_suffix_patterns
-import views
+from . import views
 import swt.exviews
 
 urlpatterns = [

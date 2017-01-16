@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Group
 
 from rest_framework import serializers
 
-from accounts.models import Profile
+from .models import Profile
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     #username=serializers.ReadOnlyField()

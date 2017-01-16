@@ -1,12 +1,12 @@
 from rest_framework.response import Response
 
 from rest_framework import schemas
-from rest_framework import renderers, response
+from rest_framework import response
 from rest_framework.schemas import get_schema_view
 from rest_framework_swagger.views import get_swagger_view
 from rest_framework.decorators import api_view, renderer_classes
 
-from renderers import SwaggerRenderer
+from .renderers import SwaggerRenderer
 
 # Schema stuff 
 # TODO: remove spurious urls from schema views.
