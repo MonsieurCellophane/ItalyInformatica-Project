@@ -4,11 +4,12 @@ https://ilprogettoneteam.slack.com/signup
 
 # Adesioni
 
-	/u/alerighi    frontend         joined
-	/u/giam95      frontend         joined
-	/u/damiano80   backend
-	/u/fabio1618   scrum,backend?
-
+	/u/alerighi               frontend         joined
+	/u/giam95                 frontend         joined
+	/u/damiano80              backend
+	/u/fabio1618              scrum,backend?
+	Andrea Masala             backend?
+	dominiksundas8@gmail.com
 # Tooling
 
  * gitlab + apache2 su gitlab.itialyinformatica.org
@@ -25,7 +26,7 @@ https://ilprogettoneteam.slack.com/signup
 	you may need to install some package first: 
 	sudo apt-get install cmake libmysqlclient-dev automake autoconf autogen
  
- * https://git.fosscommunity.in/debian-ruby/TaskTracker/issues/107
+ * Problemi nel listare i runners. https://git.fosscommunity.in/debian-ruby/TaskTracker/issues/107
  Applicata la patch trovata su:
  https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=819903
  

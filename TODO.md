@@ -1,3 +1,10 @@
+# Generally
+
+ * Make python3 compatible (should already be but needs testing)
+ * messageboards/inbox (with a package called threaded messages?)
+ * modeling friendship
+ * testing?
+ 
 # Accounts
 
 * fine tune permissions for profiles (chek that a user can only edit its own: IsAdminOrOwner)
