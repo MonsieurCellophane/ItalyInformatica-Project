@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'reddit.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
+# DO NOT CHANGE HERE: use local_settings.py (see local_settings.py.sample
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -192,3 +192,13 @@ LOGGING={
         }
     }
 }
+#local override
+try:
+
+    from local_settings import *
+
+except ImportError:
+
+    pass
+
+    
