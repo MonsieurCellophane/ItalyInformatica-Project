@@ -1,4 +1,4 @@
-# Chi collabora al progetto
+## Chi collabora al progetto
 
 ## Alessandro Righi @alerighi
 *Insert Content Here*
@@ -37,15 +37,17 @@
 * **Cosa faccio** Amministrazione di sistema, sviluppo SW server-oriented in ambito web/servizi
 * **Ruolo nel progetto** Membro fondatore, backend, infrastruttura. 
 
-## Attiio @seggiola
+## Attilio @seggiola
 * **Cosa faccio** Web Developer (Back-end: Oracle-Java Enterprise; front-end: HTML-JavaScript-CSS)
 * **Cosa vorrei fare per il progetto** Back-end
 
 ## SplatterH0use @splatterh0use
-*Insert Content Here* 
+* **Cosa faccio** sono un Experience Designer e sviluppo prodotti e servizi per la clientala. Mi specializzo nel concept design assieme a strategia e foresight. Mi occupo anche di UI/UX design e dell'interazione dell'user con il prodotto.
+* **Ruole nel Progettone** Mi piacerebbe imparare di piu'su questa piattaforma e capirne i contenuti che possono collegarsi alla mia esperienza professionale. Vorrei fornire l'estetica e la funzionalita' nel progetto per facilitare l'uso verso l'user. 
 
 ## Veon  @veon
 *Insert Content Here*
+
 
 
 # Slack channel
