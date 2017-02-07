@@ -27,7 +27,9 @@
 * **Ruolo nel progetto**: fronted (app Android o quel che si farà)
 
 ## Jack Heuston @JackHeuston
-*Insert Content Here*
+* **Cosa faccio:** sono un fullstack web developer, con qualche conoscenza di sistemi e networking.
+* **Cosa vorrei fare per il progettone:** disponibile per un frontend web se servisse. Altrimenti anche backend o Android app (ma partirei da zero su quest'ultima)
+* **Ruolo nel progetto:** O lo scrive il boss, o è la copia del punto sopra :-D
 
 ## Leonardo Nardelli @leonardelli 
 * **Cosa faccio** Sviluppatore di applicazioni web, lavoro da circa 6 mesi e non ho avuto fin ora la possibilità di sviluppare qualcosa da zero, ma sono piccole correttive e bugfix.
