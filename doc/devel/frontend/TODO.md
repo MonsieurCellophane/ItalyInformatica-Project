@@ -1,4 +1,9 @@
-# Generally
+# Registration
+
+Allow for attaching a new registration to user (link is now 1-1).
+At save, check owner already exists disconnect old from user, attach new.
+
+# General
 
  * Make python3 compatible (should already be but needs testing)
  * messageboards/inbox (with a package called threaded messages?)

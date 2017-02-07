@@ -1,0 +1,10 @@
+# You can use this file to override some of the settings in settings.py
+# Rename to local settings.py and edit that file, e.g.:
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+# Be wary of changing things like INSTALLED_APPS etc.
+
