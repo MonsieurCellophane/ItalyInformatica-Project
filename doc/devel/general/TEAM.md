@@ -46,8 +46,10 @@
 * **Ruole nel Progettone** Mi piacerebbe imparare di piu'su questa piattaforma e capirne i contenuti che possono collegarsi alla mia esperienza professionale. Vorrei fornire l'estetica e la funzionalita' nel progetto per facilitare l'uso verso l'user. 
 
 ## Veon  @veon
-*Insert Content Here*
 
+* **Cosa faccio** Tecnico informatico per assistenza tecnica da remoto per un ISP nazionale. Contributore attivo nel Fedora Project per i gruppi L10n e websites.
+* **Cosa vorrei fare per "IlProgettone"** partendo da "zero" su quasi ogni aspetto, vorrei poter imparare insieme a voi e studiare tutto lo sviluppo di un'app nativa e non per i vari MobileOS.
+* **Ruolo ne "IlProgettone"** mi candido per la parte #frontend dove vorrei applicarmi, ma sono disponibile anche per un sano #backend.
 
 
 # Slack channel
