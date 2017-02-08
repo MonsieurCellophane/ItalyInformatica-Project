@@ -58,6 +58,21 @@
 
 https://ilprogettoneteam.slack.com/signup
 
+
+    Alessandro Righi	@alerighi	alerighi4@gmail.com
+    cybertex1969	@cybertex1969	cybertex1969@gmail.com Admin
+    Damiano Stella	@damiano80	damiano80@gmail.com
+    Dominik Sundas	@domi	dominiksundas8@gmail.com
+    Fabio Filippi	@fabiofilippi1618	fabiofilippi1618@gmail.com
+    No real name set	@fen0x	fen0x@fen0x.net 
+    giam95	@giam95	g.giammi@yahoo.it
+    Jack Heuston	@jackheuston	giacomopersichini@gmail.com
+    leonardo nardelli	@leonardelli90	leonardelli90@gmail.com
+    Monsieur Cellophane	@monsieurcellophane	alessandro.forghieri@gmail.com
+    Attilio Capocchiani	@seggiola	attilio.capocchiani@gmail.com
+    No real name set	@splatterh0use	i742@yahoo.com
+    Andrea Masala	@veon	veon@fedoraproject.org
+
 # Adesioni (OLD)
 
 	/u/alerighi               frontend         joined
