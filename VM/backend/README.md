@@ -29,4 +29,13 @@ Or issue the following:
 	  # cd /opt/project
 	  # python ./manage.py runserver 0.0.0.0:80
 
+## And then
+
+You can package the box for later use.
+
+Check:
+
+https://scotch.io/tutorials/how-to-create-a-vagrant-base-box-from-an-existing-one
+
+
 	  
