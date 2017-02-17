@@ -72,17 +72,9 @@ https://ilprogettoneteam.slack.com/signup
     Attilio Capocchiani	@seggiola	attilio.capocchiani@gmail.com
     No real name set	@splatterh0use	i742@yahoo.com
     Andrea Masala	@veon	veon@fedoraproject.org
+	Edoardo Maria Elidoro   @edoardomariaelidoro   edoardo.elidoro@gmail.com
+	NICO nicoalta01@gmail.com   @sernico
 
-# Adesioni (OLD)
-
-	/u/alerighi               frontend         joined
-	/u/giam95                 frontend         joined
-	/u/damiano80              backend
-	/u/fabio1618              scrum,backend?
-	Andrea Masala (telegram) veon             backend?
-	/u/seggiola
-	/u/leona90	
-	domi (telegram)
 
  
  
