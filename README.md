@@ -31,10 +31,6 @@ Cosa fa:
   in due formati - coreapi, openapi
   
 
-Cosa manca alla funzionalità minima:
-
-  * Endpoint per registrazione
-
 ---
 
 1) A shameless rip from django-rest-jwt, really
