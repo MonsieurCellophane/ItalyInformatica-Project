@@ -43,6 +43,10 @@
 * **Cosa faccio** Web Developer (Back-end: Oracle-Java Enterprise; front-end: HTML-JavaScript-CSS)
 * **Cosa vorrei fare per il progetto** Back-end
 
+## Nicolò @sernico
+* **Cosa faccio** Sviluppatore di siti web, applicazioni web, sysadmin e social marketer
+* **Ruolo nel progetto** Proposto per #frontend, vorrei imparare qualcosina nel backend. Spero di non deludere nessuno!
+
 ## SplatterH0use @splatterh0use
 * **Cosa faccio** sono un Experience Designer e sviluppo prodotti e servizi per la clientala. Mi specializzo nel concept design assieme a strategia e foresight. Mi occupo anche di UI/UX design e dell'interazione dell'user con il prodotto.
 * **Ruole nel Progettone** Mi piacerebbe imparare di piu'su questa piattaforma e capirne i contenuti che possono collegarsi alla mia esperienza professionale. Vorrei fornire l'estetica e la funzionalita' nel progetto per facilitare l'uso verso l'user. 
@@ -73,7 +77,7 @@ https://ilprogettoneteam.slack.com/signup
     No real name set	@splatterh0use	i742@yahoo.com
     Andrea Masala	@veon	veon@fedoraproject.org
 	Edoardo Maria Elidoro   @edoardomariaelidoro   edoardo.elidoro@gmail.com
-	NICO nicoalta01@gmail.com   @sernico
+	Nicolò Altamura nicoalta01@gmail.com   @sernico            nicoalta01@gmail.com
 
 
  
