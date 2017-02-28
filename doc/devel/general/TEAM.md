@@ -14,6 +14,7 @@
 ## Fabio Filippi @fabiofilippi
 * **Cosa faccio**: Sviluppo principalmente in Java applicazioni distribuite nell'ambito Big Data (che fa sempre figo dirlo). Ho esperienza con Java Enterprise,  alcune tecnologie web (React/Angular) e con lo sviluppo Android.
 * **Cosa vorrei fare per il progettone**: Oltre ad ampliare le mie conoscenze nella parte tecnologica mi piacerebbe imparare a gestire un progetto.
+* **Ruloi aggiuntivi** gitmaster
 
 
 ## Fen0x @fen0x
