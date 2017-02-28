@@ -57,6 +57,17 @@
 * **Cosa vorrei fare per "IlProgettone"** partendo da "zero" su quasi ogni aspetto, vorrei poter imparare insieme a voi e studiare tutto lo sviluppo di un'app nativa e non per i vari MobileOS.
 * **Ruolo ne "IlProgettone"** mi candido per la parte #frontend dove vorrei applicarmi, ma sono disponibile anche per un sano #backend.
 
+## birut
+* ** Cosa faccio ** Sono uno sviluppatore Android e iOS in linguaggio nativo (rispettivamente Java e SWIFT). 
+Ho conoscenze basilari anche di HTML, CSS e JS che mi piacerebbe approfondire. Penso che il Progettone possa essere un bel modo di 
+imparare qualcosa nel (poco) tempo libero che mi rimane tra una cosa e l'altra. 
+* **Cosa vorrei fare per "IlProgettone"** ...
+* **Ruolo ne "IlProgettone"** ...
+
+## sylfer
+* ** Cosa faccio ** Sono uno sviluppatore Android in erba e vorrei utilizzare il tempo libero che ho a disposizione per aiutarvi nel progetto.
+* **Cosa vorrei fare per "IlProgettone"** ...
+* **Ruolo ne "IlProgettone"** ...
 
 # Slack channel
 
