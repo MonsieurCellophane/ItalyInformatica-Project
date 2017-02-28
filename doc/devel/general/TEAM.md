@@ -66,9 +66,8 @@ imparare qualcosa nel (poco) tempo libero che mi rimane tra una cosa e l'altra.
 * **Ruolo ne "IlProgettone"** ...
 
 ## slyfer
-* ** Cosa faccio ** Sono uno sviluppatore Android in erba e vorrei utilizzare il tempo libero che ho a disposizione per aiutarvi nel progetto.
-* **Cosa vorrei fare per "IlProgettone"** ...
-* **Ruolo ne "IlProgettone"** ...
+* **Cosa faccio** Studio Ingegneria Informatica (triennale). Sono uno sviluppatore Android in erba e vorrei utilizzare il tempo libero che ho a disposizione per aiutarvi nel progetto.
+* **Cosa vorrei fare per "IlProgettone"** App Android. Non ho esperienza in iOS ma vorrei cogliere l'occasione per cominciare a darci un'occhiata.
 
 # Slack channel
 
@@ -90,6 +89,7 @@ https://ilprogettoneteam.slack.com/signup
     Andrea Masala	@veon	veon@fedoraproject.org
 	Edoardo Maria Elidoro   @edoardomariaelidoro   edoardo.elidoro@gmail.com
 	Nicolò Altamura nicoalta01@gmail.com   @sernico            nicoalta01@gmail.com
+	Giulio Lodi @slyfer lodi.giulio@gmail.com
 
 
  
