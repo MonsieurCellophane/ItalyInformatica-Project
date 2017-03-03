@@ -93,7 +93,7 @@ while getopts dvhb:m: opt ; do
 	case "$opt" in
 	        d) set -x ;;
 		b) BASE="$OPTARG" ;;
-		b) METH="$OPTARG" ;;
+		m) METH="$OPTARG" ;;
 	        v) opt_v=1 ;;
 		?) usage; exit ;;
 	esac
@@ -111,6 +111,7 @@ shift
 
 token=$(token $U $P)
 vbs "Acquired token: $token"
+[[ x$token == x ]] && die "No token,cannot auth" 2
 fmt=$(tokenfmt $token)
 vbs "Token format: '$fmt'"
 header=$(printf "$fmt" $token)
