@@ -69,6 +69,7 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
                         if (token.equals(loginResponseVerification.getToken())) {
                             getView().onConfirmedLoginVerification(token);
                             getDataManager().setToken(token);
+                            getView().openMainActivity();
                         }
                         else {
                             getView().onLoginVerificationError("Tokens don't match!");

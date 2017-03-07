@@ -9,16 +9,12 @@ public interface MainContract {
 
         void openLoginActivity();
 
-        void changeText(String s);
-
     }
 
     @PerActivity
     interface Presenter<V extends MainContract.View> extends BaseContract.Presenter<V> {
 
-        void onTextClick();
-
-        void checkIfLoggedin();
+        void checkIfLoggedIn();
 
     }
 

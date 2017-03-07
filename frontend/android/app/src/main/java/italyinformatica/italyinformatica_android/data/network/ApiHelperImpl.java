@@ -26,7 +26,7 @@ public class ApiHelperImpl implements ApiHelper {
 
     @Override
     public Observable<LoginResponse> doServerLogin(LoginRequest request) {
-        return Rx2AndroidNetworking.post(ApiEndpoint.API_AUTH_TOKEN)
+        return Rx2AndroidNetworking.post(ApiEndpoint.getBaseUrl(mContext) + ApiEndpoint.getApiAuthToken(mContext))
                 .addBodyParameter(request)
                 .build()
                 .getObjectObservable(LoginResponse.class);
@@ -34,9 +34,10 @@ public class ApiHelperImpl implements ApiHelper {
 
     @Override
     public Observable<LoginResponseVerification> doServerLoginVerification(LoginRequestVerification requestVerification) {
-        return Rx2AndroidNetworking.post(ApiEndpoint.API_AUTH_VERIFY)
+        return Rx2AndroidNetworking.post(ApiEndpoint.getBaseUrl(mContext) + ApiEndpoint.getApiAuthVerify(mContext))
                 .addBodyParameter(requestVerification)
                 .build()
                 .getObjectObservable(LoginResponseVerification.class);
     }
+
 }

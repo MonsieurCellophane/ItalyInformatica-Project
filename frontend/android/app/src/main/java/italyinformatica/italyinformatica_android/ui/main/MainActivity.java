@@ -33,19 +33,12 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
         mPresenter.onAttach(this);
 
-        mPresenter.checkIfLoggedin();
-
-        openLoginActivity();
+        mPresenter.checkIfLoggedIn();
     }
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
-    }
-
-    @OnClick(R.id.text)
-    void onTextClick() {
-        mPresenter.onTextClick();
     }
 
     @Override
@@ -55,8 +48,4 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         finish();
     }
 
-    @Override
-    public void changeText(String s) {
-        mTextView.setText(s);
-    }
 }

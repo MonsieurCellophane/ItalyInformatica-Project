@@ -14,12 +14,9 @@ public class MainPresenter<V extends MainContract.View> extends BasePresenter<V>
     }
 
     @Override
-    public void onTextClick() {
-        getView().changeText("bella");
-    }
-
-    @Override
-    public void checkIfLoggedin() {
-
+    public void checkIfLoggedIn() {
+        if (getDataManager().getToken() == null || getDataManager().getToken().isEmpty()) {
+            getView().openLoginActivity();
+        }
     }
 }

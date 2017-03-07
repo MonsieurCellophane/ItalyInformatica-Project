@@ -49,4 +49,10 @@ public class DataManagerImpl implements DataManager {
     public void setToken(String token) {
         mPreferencesHelper.setToken(token);
     }
+
+    @Override
+    public String getConfigValue(String name) {
+        return mPreferencesHelper.getConfigValue(name);
+    }
+
 }
