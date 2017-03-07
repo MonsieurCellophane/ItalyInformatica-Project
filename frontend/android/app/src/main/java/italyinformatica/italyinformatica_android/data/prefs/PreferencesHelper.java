@@ -14,11 +14,4 @@ public interface PreferencesHelper {
      */
     String getToken();
 
-    /**
-     * Returns value of property stored in res/raw/config.properties
-     * @param name      es: "BASE_URL". Name of the property
-     * @return          String
-     */
-    String getConfigValue(String name);
-
 }
